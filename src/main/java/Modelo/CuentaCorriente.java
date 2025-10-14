@@ -12,10 +12,16 @@ public class CuentaCorriente extends Cuenta {
 
     public CuentaCorriente(int numeroCuenta, String fechaApertura) {
         super(numeroCuenta, fechaApertura);
-        this.sobreGiro = 100000;
+        this.sobreGiro = -100000;
     }
-    
+
     public String getTipoCuenta() {
         return "Corriente";
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\n  - Tipo de cuenta : " + this.getTipoCuenta()
+                + "\n  - Sobregiro : " + (-sobreGiro);
     }
 }

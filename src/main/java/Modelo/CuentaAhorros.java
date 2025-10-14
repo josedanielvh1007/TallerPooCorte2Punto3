@@ -13,9 +13,15 @@ public class CuentaAhorros extends Cuenta {
     public CuentaAhorros(int numeroCuenta, String fechaApertura) {
         super(numeroCuenta, fechaApertura);
     }
-    
+
     public String getTipoCuenta() {
         return "Ahorros";
     }
-    
+
+    @Override
+    public String toString() {
+        return super.toString() + "\n  - Tipo de cuenta : " + this.getTipoCuenta()
+                + "\n  - Sobregiro : N.A.";
+    }
+
 }

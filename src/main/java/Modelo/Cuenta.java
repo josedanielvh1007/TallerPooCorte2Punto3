@@ -4,12 +4,14 @@
  */
 package Modelo;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jose
  */
 public class Cuenta {
-    
+
     private final int numeroCuenta;
     double saldo;
     private final String fechaApertura;
@@ -21,9 +23,13 @@ public class Cuenta {
         this.fechaApertura = fechaApertura;
         this.sobreGiro = 0;
     }
-    
+
     public void consignacion(double valorConsignacion) {
-        saldo += valorConsignacion;
+        if ((saldo += valorConsignacion) >= sobreGiro) {
+            saldo += valorConsignacion;
+        } else {
+            JOptionPane.showMessageDialog(null, "Error : No hay saldo suficiente");
+        };
     }
 
     public int getNumeroCuenta() {
@@ -37,5 +43,12 @@ public class Cuenta {
     public String getFechaApertura() {
         return fechaApertura;
     }
-    
+
+    @Override
+    public String toString() {
+        return numeroCuenta + " : "
+                + "\n  - Apertura : " + fechaApertura
+                + "\n  - Saldo : " + saldo;
+    }
+
 }
