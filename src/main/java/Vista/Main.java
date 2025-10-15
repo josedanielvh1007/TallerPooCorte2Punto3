@@ -29,6 +29,7 @@ public class Main {
                                                                   1. Añadir cliente.
                                                                   2. Listar clientes.
                                                                   3. Operaciones con clientes.
+                                                                  4. Cargar datos de ejemplo.
                                                                   0. Salir."""));
             switch (option) {
                 case 1 ->
@@ -37,6 +38,8 @@ public class Main {
                     listarClientes();
                 case 3 ->
                     operacionesClientes();
+                case 4 ->
+                    cargarDatosEjemplo();
             }
         } while (option != 0);
     }
@@ -144,20 +147,45 @@ public class Main {
         int tipoTransaccion = 2;
         for (Cliente cli : clientes) {
             if (cli.getNombre().contains(nombreCliente)) {
-                numeroCuenta = Integer.parseInt(JOptionPane.showInputDialog("¿A qué cuenta desea realizar la transacción" + cli.listarCuentas()));
+                numeroCuenta = Integer.parseInt(JOptionPane.showInputDialog("¿A qué cuenta desea realizar la transacción?\n" + cli.listarCuentas()));
                 tipoTransaccion = Integer.parseInt(JOptionPane.showInputDialog("Tipo de transacción : \n1. Retiro. \n2. Consignación."));
                 valorTransaccion = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el monto"));
             }
         }
-        
+
         if (tipoTransaccion == 1) {
             valorTransaccion = -valorTransaccion;
         }
-        
+
         for (Cliente cli : clientes) {
             if (cli.getNombre().contains(nombreCliente)) {
                 cli.consignacion(numeroCuenta, valorTransaccion);
             }
-        } 
+        }
+    }
+
+    private void cargarDatosEjemplo() {
+        // Crear algunos clientes de ejemplo
+        ClienteNatural c1 = new ClienteNatural("Juan Pérez", 30);
+        ClienteNatural c2 = new ClienteNatural("María Gómez", 25);
+        ClienteJuridico c3 = new ClienteJuridico("TechCorp S.A.", 5);
+
+        // Añadir cuentas a los clientes
+        c1.anadirCuenta(1);
+        c1.anadirCuenta(2);
+        c2.anadirCuenta(3);
+        c3.anadirCuenta(4);
+
+        // (Opcional) Puedes hacer algunas consignaciones iniciales
+        c1.consignacion(1, 500000);
+        c2.consignacion(3, 1000000);
+        c3.consignacion(4, 10000000);
+
+        // Agregar clientes al ArrayList principal
+        clientes.add(c1);
+        clientes.add(c2);
+        clientes.add(c3);
+
+        JOptionPane.showMessageDialog(null, "Datos de ejemplo cargados correctamente ✅");
     }
 }
