@@ -14,10 +14,10 @@ import javax.swing.JOptionPane;
 public class Cliente {
     
     protected final String nombre;
-    protected final String edad;
+    protected final int edad;
     ArrayList<Cuenta> cuentas;
 
-    public Cliente(String nombre, String edad) {
+    public Cliente(String nombre, int edad) {
         this.nombre = nombre;
         this.edad = edad;
         this.cuentas = new ArrayList<>();
@@ -42,6 +42,11 @@ public class Cliente {
     }
     
     public String tipoCliente() {
+        return "";
+    }
+    
+    @Override
+    public String toString() {
         return "";
     }
 }
