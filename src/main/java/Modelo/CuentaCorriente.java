@@ -15,6 +15,7 @@ public class CuentaCorriente extends Cuenta {
         this.sobreGiro = -100000;
     }
 
+    @Override
     public String getTipoCuenta() {
         return "Corriente";
     }

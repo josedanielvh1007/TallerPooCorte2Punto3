@@ -53,8 +53,20 @@ public class Cliente {
         return "";
     }
 
+    public void listarCuentas() {
+        String texto = "Información cuentas \n---------------------------------------------\n";
+        for (Cuenta cnt : cuentas) {
+            texto += "  - Cuenta : " + cnt.getNumeroCuenta()
+                    + "\n  - Saldo : " + cnt.getSaldo() 
+                    + "\n  - Tipo de cuenta : " + cnt.getTipoCuenta() 
+                    + "\n---------------------------------------------\n";
+        }
+        
+        JOptionPane.showMessageDialog(null, texto);
+    }
+
     @Override
     public String toString() {
-        return nombre + "\n  - Edad : " + edad + "\n  - Total cuentas : " + (cuentas.size() + 1);
+        return nombre + "\n  - Edad : " + edad + "\n  - Total cuentas : " + cuentas.size();
     }
 }

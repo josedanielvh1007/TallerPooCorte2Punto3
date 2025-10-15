@@ -14,6 +14,7 @@ public class CuentaAhorros extends Cuenta {
         super(numeroCuenta, fechaApertura);
     }
 
+    @Override
     public String getTipoCuenta() {
         return "Ahorros";
     }

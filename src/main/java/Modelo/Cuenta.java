@@ -39,6 +39,10 @@ public class Cuenta {
     public double getSaldo() {
         return saldo;
     }
+    
+    public String getTipoCuenta() {
+        return "";
+    }
 
     public String getFechaApertura() {
         return fechaApertura;
