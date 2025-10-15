@@ -27,12 +27,15 @@ public class Main {
             option = Integer.parseInt(JOptionPane.showInputDialog("""
                                                                   Menu : 
                                                                   1. Añadir cliente.
-                                                                  2. Listar clientes."""));
+                                                                  2. Listar clientes.
+                                                                  3. Operaciones con clientes."""));
             switch (option) {
                 case 1 ->
                     anadirCliente();
                 case 2 ->
                     listarClientes();
+                case 3 ->
+                    operacionesClientes();
             }
         } while (option != 0);
     }
@@ -69,5 +72,41 @@ public class Main {
             }
         }
         JOptionPane.showMessageDialog(null, texto);
+    }
+
+    private void operacionesClientes() {
+        int option;
+        do {
+            option = Integer.parseInt(JOptionPane.showInputDialog("""
+                                                                  Menu : 
+                                                                  1. Añadir cuenta.
+                                                                  2. Listar cuentas.
+                                                                  3. Transacciones."""));
+            switch (option) {
+                case 1 -> {
+                    String texto = "";
+                    int cuentasExistentes = 0;
+                    for (Cliente cli : clientes) {
+                        texto += "\n  - " + cli.getNombre();
+                        cuentasExistentes += cli.getCuentas().size();
+                    }
+                    String nombreCliente = JOptionPane.showInputDialog("¿Para quién desea añadir una cuenta?\n" + texto);
+
+                    int cuentasIniciales;
+
+                    for (Cliente cli : clientes) {
+                        if (cli.getNombre().contains(nombreCliente)) {
+                            cuentasIniciales = cli.getCuentas().size();
+                            cli.anadirCuenta(cuentasExistentes + 2);
+                            if (cuentasIniciales + 1 == cli.getCuentas().size()) {
+                                JOptionPane.showMessageDialog(null, "Cuenta añadida correctamente....");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Error. Por favor intente nuevamente.");
+                            }
+                        }
+                    }
+                }
+            }
+        } while (option != 0);
     }
 }
