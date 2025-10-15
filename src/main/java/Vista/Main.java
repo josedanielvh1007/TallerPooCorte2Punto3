@@ -147,7 +147,7 @@ public class Main {
         int tipoTransaccion = 2;
         for (Cliente cli : clientes) {
             if (cli.getNombre().contains(nombreCliente)) {
-                numeroCuenta = Integer.parseInt(JOptionPane.showInputDialog("¿A qué cuenta desea realizar la transacción?\n" + cli.listarCuentas()));
+                numeroCuenta = Integer.parseInt(JOptionPane.showInputDialog("¿A qué cuenta desea realizar la transacción?\n---------------------------------------------\n" + cli.listarCuentas()));
                 tipoTransaccion = Integer.parseInt(JOptionPane.showInputDialog("Tipo de transacción : \n1. Retiro. \n2. Consignación."));
                 valorTransaccion = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el monto"));
             }
