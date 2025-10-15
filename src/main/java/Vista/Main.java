@@ -28,7 +28,8 @@ public class Main {
                                                                   Menu : 
                                                                   1. Añadir cliente.
                                                                   2. Listar clientes.
-                                                                  3. Operaciones con clientes."""));
+                                                                  3. Operaciones con clientes.
+                                                                  0. Salir."""));
             switch (option) {
                 case 1 ->
                     anadirCliente();
@@ -81,10 +82,15 @@ public class Main {
                                                                   Menu : 
                                                                   1. Añadir cuenta.
                                                                   2. Listar cuentas.
-                                                                  3. Transacciones."""));
+                                                                  3. Transacciones.
+                                                                  0. Salir."""));
             switch (option) {
-                case 1 -> anadirCuenta();
-                case 2 -> listarCuenta();
+                case 1 ->
+                    anadirCuenta();
+                case 2 ->
+                    listarCuenta();
+                case 3 ->
+                    transaccionCuenta();
             }
         } while (option != 0);
     }
@@ -112,18 +118,46 @@ public class Main {
             }
         }
     }
-    
+
     private void listarCuenta() {
         String texto = "";
         for (Cliente cli : clientes) {
             texto += "\n  - " + cli.getNombre();
         }
         String nombreCliente = JOptionPane.showInputDialog("¿Para quién desea visualizar las cuentas?\n" + texto);
+
+        for (Cliente cli : clientes) {
+            if (cli.getNombre().contains(nombreCliente)) {
+                JOptionPane.showMessageDialog(null, "Información cuentas \n---------------------------------------------\n" + cli.listarCuentas());
+            }
+        }
+    }
+
+    private void transaccionCuenta() {
+        String texto = "";
+        for (Cliente cli : clientes) {
+            texto += "\n  - " + cli.getNombre();
+        }
+        String nombreCliente = JOptionPane.showInputDialog("¿Para quién desea realizar una transacción?\n" + texto);
+        int numeroCuenta = 0;
+        double valorTransaccion = 0;
+        int tipoTransaccion = 2;
+        for (Cliente cli : clientes) {
+            if (cli.getNombre().contains(nombreCliente)) {
+                numeroCuenta = Integer.parseInt(JOptionPane.showInputDialog("¿A qué cuenta desea realizar la transacción" + cli.listarCuentas()));
+                tipoTransaccion = Integer.parseInt(JOptionPane.showInputDialog("Tipo de transacción : \n1. Retiro. \n2. Consignación."));
+                valorTransaccion = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el monto"));
+            }
+        }
+        
+        if (tipoTransaccion == 1) {
+            valorTransaccion = -valorTransaccion;
+        }
         
         for (Cliente cli : clientes) {
             if (cli.getNombre().contains(nombreCliente)) {
-                cli.listarCuentas();
+                cli.consignacion(numeroCuenta, valorTransaccion);
             }
-        }
+        } 
     }
 }

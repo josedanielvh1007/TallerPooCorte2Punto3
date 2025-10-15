@@ -25,11 +25,11 @@ public class Cuenta {
     }
 
     public void consignacion(double valorConsignacion) {
-        if ((saldo += valorConsignacion) >= sobreGiro) {
+        if ((saldo + valorConsignacion) >= sobreGiro) {
             saldo += valorConsignacion;
         } else {
             JOptionPane.showMessageDialog(null, "Error : No hay saldo suficiente");
-        };
+        }
     }
 
     public int getNumeroCuenta() {

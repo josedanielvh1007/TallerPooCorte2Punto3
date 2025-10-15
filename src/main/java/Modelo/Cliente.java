@@ -53,8 +53,8 @@ public class Cliente {
         return "";
     }
 
-    public void listarCuentas() {
-        String texto = "Información cuentas \n---------------------------------------------\n";
+    public String listarCuentas() {
+        String texto = "";
         for (Cuenta cnt : cuentas) {
             texto += "  - Cuenta : " + cnt.getNumeroCuenta()
                     + "\n  - Saldo : " + cnt.getSaldo() 
@@ -62,7 +62,21 @@ public class Cliente {
                     + "\n---------------------------------------------\n";
         }
         
-        JOptionPane.showMessageDialog(null, texto);
+        return texto;
+    }
+    
+    public void consignacion(int numeroCuenta, double valorConsignacion) {
+        for (Cuenta cnt : cuentas) {
+            if (cnt.getNumeroCuenta() == numeroCuenta) {
+                double saldoInicial = cnt.getSaldo();
+                cnt.consignacion(valorConsignacion);
+                if (saldoInicial + valorConsignacion == cnt.getSaldo()) {
+                    JOptionPane.showMessageDialog(null, "Transacción realizada correctamente...");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error. Por favor intente nuevamente...");
+                }
+            }
+        }
     }
 
     @Override
