@@ -47,6 +47,6 @@ public class Cliente {
     
     @Override
     public String toString() {
-        return "";
+        return nombre + "\n  - Edad : " + edad + "\n  - Total cuentas : " + (cuentas.size() + 1);
     }
 }

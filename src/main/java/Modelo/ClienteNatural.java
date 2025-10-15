@@ -19,4 +19,9 @@ public class ClienteNatural extends Cliente {
         return "Natural";
     }
     
+    @Override
+    public String toString() {
+        return super.toString() + "\n  - Tipo de cliente : " + this.tipoCliente();
+    }
+    
 }

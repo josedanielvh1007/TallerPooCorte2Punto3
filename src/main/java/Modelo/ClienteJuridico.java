@@ -19,4 +19,9 @@ public class ClienteJuridico extends Cliente {
         return "Juridico";
     }
     
+    @Override
+    public String toString() {
+        return super.toString() + "\n  - Tipo de cliente : " + this.tipoCliente();
+    }
+    
 }
