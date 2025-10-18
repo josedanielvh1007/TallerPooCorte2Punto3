@@ -12,9 +12,9 @@ import javax.swing.JOptionPane;
  */
 public class Cuenta {
 
-    private final int numeroCuenta;
-    double saldo;
-    private final String fechaApertura;
+    protected final int numeroCuenta;
+    protected double saldo;
+    protected final String fechaApertura;
     protected double sobreGiro;
 
     public Cuenta(int numeroCuenta, String fechaApertura) {
